@@ -1,0 +1,29 @@
+cmake_minimum_required(VERSION 3.10)
+project(aim_pointer_game C)
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/dist)
+
+# SDL2 Manual include/link (Recommended for MSYS2 MinGW)
+include_directories(
+    C:/msys64/mingw64/include/SDL2
+)
+
+link_directories(
+    C:/msys64/mingw64/lib
+)
+
+add_executable(aim_pointer_game
+    src/main.c
+    src/icon.rc
+)
+
+set_target_properties(aim_pointer_game PROPERTIES WIN32_EXECUTABLE TRUE)
+
+# Link SDL2 libraries manually (IMPORTANT ORDER)
+target_link_libraries(aim_pointer_game
+    SDL2main
+    SDL2
+    SDL2_ttf
+    SDL2_mixer
+)
